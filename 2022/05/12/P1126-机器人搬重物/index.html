@@ -16,21 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="P3956 棋盘把题目转化为图论题 这是我的第一个建图的题  notes:    1. abs(xx[i] - xx[j]) + abs(yy[i] - yy[j]) 是一种判断是否在上下左右的简单写法    2. 始终用 索引 值去代表一个节点    3. 对终点的处理  其他的详细内容在注释里 12345678910111213141516171819202122232425262728293">
+    <meta name="description" content="P1126 notes :  关于朝向 始终是用指针 代替 真实值    利用bfs 自然含有的最近性质 机器人在交点处走且有体积，而障碍物在方格中 所以 判断前方是否会碰到障碍物时见代码注释 由于机器人有体积 所以不能走到边缘 具体见代码注释   123456789101112131415161718192021222324252627282930313233343536373839404142">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P3956 棋盘">
-<meta property="og:url" content="http://example.com/2022/05/10/P3956-md/index.html">
+<meta property="og:title" content="P1126 机器人搬重物">
+<meta property="og:url" content="http://example.com/2022/05/12/P1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="P3956 棋盘把题目转化为图论题 这是我的第一个建图的题  notes:    1. abs(xx[i] - xx[j]) + abs(yy[i] - yy[j]) 是一种判断是否在上下左右的简单写法    2. 始终用 索引 值去代表一个节点    3. 对终点的处理  其他的详细内容在注释里 12345678910111213141516171819202122232425262728293">
+<meta property="og:description" content="P1126 notes :  关于朝向 始终是用指针 代替 真实值    利用bfs 自然含有的最近性质 机器人在交点处走且有体积，而障碍物在方格中 所以 判断前方是否会碰到障碍物时见代码注释 由于机器人有体积 所以不能走到边缘 具体见代码注释   123456789101112131415161718192021222324252627282930313233343536373839404142">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-10T11:56:29.000Z">
-<meta property="article:modified_time" content="2022-05-10T12:02:06.252Z">
+<meta property="article:published_time" content="2022-05-12T05:25:12.000Z">
+<meta property="article:modified_time" content="2022-05-12T05:34:25.649Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="图论">
+<meta property="article:tag" content="bfs">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>P3956 棋盘 - Hexo</title>
+  <title>P1126 机器人搬重物 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="P3956 棋盘">
+            <span class="h2" id="subtitle" title="P1126 机器人搬重物">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-10 19:56" pubdate>
-        2022年5月10日 晚上
+      <time datetime="2022-05-12 13:25" pubdate>
+        2022年5月12日 下午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.5k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12 分钟
+      13 分钟
     </span>
   
 
@@ -235,15 +235,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">P3956 棋盘</h1>
+            <h1 style="display: none">P1126 机器人搬重物</h1>
             
             <div class="markdown-body">
-              <h4 id="P3956-棋盘"><a href="#P3956-棋盘" class="headerlink" title="P3956 棋盘"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3956">P3956 棋盘</a></h4><p>把题目转化为图论题 这是我的第一个建图的题</p>
-<blockquote>
-<p>notes:<br>    1. abs(xx[i] - xx[j]) + abs(yy[i] - yy[j]) 是一种判断是否在上下左右的简单写法<br>    2. 始终用 <em>索引</em> 值去代表一个节点<br>    3. 对终点的处理</p>
+              <h4 id="P1126"><a href="#P1126" class="headerlink" title="P1126"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1126">P1126</a></h4><blockquote>
+<p>notes :</p>
+<ol>
+<li>关于朝向 始终是用<code>指针</code> 代替 真实值   </li>
+<li>利用bfs 自然含有的最近性质</li>
+<li>机器人在交点处走且有体积，而障碍物在方格中 所以 判断前方是否会碰到障碍物时见代码注释</li>
+<li>由于机器人有体积 所以不能走到边缘 具体见代码注释</li>
+</ol>
 </blockquote>
-<p><strong>其他的详细内容在注释里</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">1010</span>, INF = <span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-type">int</span> g[N][N], d[N], xx[N], yy[N], col[N], m, n, x0 = <span class="hljs-number">-1</span>, ed, rec[N];<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span> </span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">memset</span>(d, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> d);<br><br>    d[u] = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-type">int</span> t = <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) <br>            <span class="hljs-keyword">if</span> (!rec[j] &amp;&amp; (t == <span class="hljs-number">-1</span> || d[j] &lt; d[t])) t = j;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) <br>            d[j] = <span class="hljs-built_in">min</span>(g[t][j] + d[t], d[j]);<br>        rec[t] = <span class="hljs-number">1</span>;<br>    &#125;   <br>    <span class="hljs-keyword">return</span> d[ed];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin &gt;&gt; m &gt;&gt; n;<br><br>    <span class="hljs-comment">//建图的过程</span><br>    <span class="hljs-type">bool</span> flag = <span class="hljs-literal">false</span>; <span class="hljs-comment">//判断有没有出现终点位置</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        cin &gt;&gt; xx[i] &gt;&gt; yy[i] &gt;&gt; col[i];<br>        <span class="hljs-keyword">if</span> (xx[i] == m &amp;&amp; yy[i] == m) ed = i, flag = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span> (xx[i] == <span class="hljs-number">1</span> &amp;&amp; yy[i] == <span class="hljs-number">1</span>) x0 = i;<br>    &#125;<br><br>    <span class="hljs-built_in">memset</span>(g, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> g);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(xx[i] - xx[j]) + <span class="hljs-built_in">abs</span>(yy[i] - yy[j]) == <span class="hljs-number">1</span>) <br>                g[i][j] = g[j][i] = <span class="hljs-built_in">abs</span>(col[i] - col[j]); <br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(xx[i] - xx[j]) + <span class="hljs-built_in">abs</span>(yy[i] - yy[j]) == <span class="hljs-number">2</span>) <br>                g[i][j] = g[j][i] = <span class="hljs-built_in">abs</span>(col[i] - col[j]) + <span class="hljs-number">2</span>;<br>        &#125;<br><br>    <span class="hljs-keyword">if</span> (!flag) &#123; <span class="hljs-comment">//如果终点没有颜色 也就无法建图</span><br>        xx[n + <span class="hljs-number">1</span>] = yy[n + <span class="hljs-number">1</span>] = m;<br>        n++; ed = n; <span class="hljs-comment">//一定不要忘记了这里的修改ed</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) <br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(xx[i] - xx[n]) + <span class="hljs-built_in">abs</span>(yy[i] - yy[n]) == <span class="hljs-number">1</span>) <br>                g[i][n] = g[n][i] = <span class="hljs-number">2</span>;<br>    &#125;<br><br>    <span class="hljs-type">int</span> t = <span class="hljs-built_in">dijkstra</span>(x0);<br><br>    <span class="hljs-keyword">if</span> (t == INF) cout &lt;&lt; <span class="hljs-number">-1</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">else</span> cout &lt;&lt; t &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;queue&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">55</span>;<br><span class="hljs-type">int</span> dx[] = &#123; <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> &#125;, dy[] = &#123; <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> &#125;; <span class="hljs-comment">//朝向</span><br><span class="hljs-type">int</span> g[N][N], rec[N][N][<span class="hljs-number">5</span>], n, m, a, b, c, d;<br><span class="hljs-type">char</span> op[<span class="hljs-number">5</span>];<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;<br>    <span class="hljs-type">int</span> r, c, d, dir;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span><br><span class="hljs-function"></span>&#123;<br>    queue&lt;Node&gt; q;<br>    q.<span class="hljs-built_in">push</span>(&#123;a, b, <span class="hljs-number">0</span>, u&#125;);<br><br>    <span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">size</span>())<br>    &#123;<br>        <span class="hljs-keyword">auto</span> t = q.<span class="hljs-built_in">front</span>();<br>        q.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-type">int</span> tx = t.r, ty = t.c, td = t.d, tdir = t.dir;<br>        <span class="hljs-keyword">if</span> (tx == c &amp;&amp; ty == d) <span class="hljs-keyword">return</span> td;<br>        <span class="hljs-keyword">if</span> (rec[tx][ty][tdir]) <span class="hljs-keyword">continue</span>;<br><br>        rec[tx][ty][tdir] = <span class="hljs-number">1</span>;<br>        <span class="hljs-comment">//换方向</span><br><br>        q.<span class="hljs-built_in">push</span>(&#123; tx, ty, td + <span class="hljs-number">1</span>, (tdir + <span class="hljs-number">1</span> + <span class="hljs-number">4</span>) % <span class="hljs-number">4</span> &#125;);<br>        q.<span class="hljs-built_in">push</span>(&#123; tx, ty, td + <span class="hljs-number">1</span>, (tdir - <span class="hljs-number">1</span> + <span class="hljs-number">4</span>) % <span class="hljs-number">4</span> &#125;);<br><br>        <span class="hljs-comment">//向前走</span><br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">3</span>; i++) <br>        &#123;<br>            <span class="hljs-type">int</span> nx = tx + i * dx[tdir], ny = ty + i * dy[tdir];<br>            <span class="hljs-keyword">if</span> (g[nx][ny] || g[nx + <span class="hljs-number">1</span>][ny] || g[nx][ny + <span class="hljs-number">1</span>] || g[nx + <span class="hljs-number">1</span>][ny + <span class="hljs-number">1</span>] || nx &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">//由于体积 判断是否会碰到障碍物</span><br>            <span class="hljs-keyword">if</span> (nx &gt;= <span class="hljs-number">1</span> &amp;&amp; nx &lt; n &amp;&amp; ny &gt;= <span class="hljs-number">1</span> &amp;&amp; ny &lt; m &amp;&amp; !rec[nx][ny][tdir])  <span class="hljs-comment">//这里&lt;不能取等于 因为机器人有体积 不能碰壁</span><br>                q.<span class="hljs-built_in">push</span>(&#123;nx, ny, td + <span class="hljs-number">1</span>, tdir&#125;);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin &gt;&gt; n &gt;&gt; m;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) <br>            cin &gt;&gt; g[i][j];<br>    <br>    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; op;<br><br>    <span class="hljs-type">int</span> dir0;<br>    <span class="hljs-keyword">switch</span> (op[<span class="hljs-number">0</span>]) &#123;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;N&#x27;</span> : dir0 = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;W&#x27;</span> : dir0 = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;S&#x27;</span> : dir0 = <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;E&#x27;</span> : dir0 = <span class="hljs-number">3</span>;<br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br><br>    cout &lt;&lt; <span class="hljs-built_in">bfs</span>(dir0) &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -254,7 +258,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a>
+                      <a class="hover-with-bg" href="/tags/bfs/">bfs</a>
                     
                   </div>
                 
@@ -271,18 +275,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/12/P1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P1126 机器人搬重物</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
-                        <span class="hidden-mobile">我的第一篇博客文章</span>
+                      <a href="/2022/05/10/P3956-md/">
+                        <span class="hidden-mobile">P3956 棋盘</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
